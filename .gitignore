@@ -1,0 +1,57 @@
+# === Python / FastAPI / Poetry ===
+.venv/
+venv/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.celery/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# === Окружение и Секреты (КРИТИЧЕСКИ ВАЖНО!) ===
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+*.secret
+
+# === Базы данных (на случай локальных тестов) ===
+*.db
+*.sqlite3
+
+# === Docker ===
+.docker/
+# Если логи контейнеров будут писаться в файлы:
+*.log
+
+# === Редакторы кода и ОС ===
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# === Node.js / Фронтенд (Vue 3 на будущее) ===
+node_modules/
+/dist
+/pack
+.npm
+.eslintcache
+.prettiercache
+.vite/
+.nuxt/
