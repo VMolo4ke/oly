@@ -58,9 +58,7 @@ async def chat_ws(websocket: WebSocket, token: str | None = None):
             await websocket.send_json({"type": "start"})
             try:
                 async with AsyncSessionLocal() as db:
-                    context = await ChatService.retrieve_context(
-                        db, user, data.message
-                    )
+                    context = await ChatService.retrieve_context(db, data.message)
                 messages = ChatService.build_messages(
                     data.message, data.history, context
                 )

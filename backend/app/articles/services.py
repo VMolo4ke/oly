@@ -57,8 +57,8 @@ class ArticleService:
         return db_article
 
     @staticmethod
-    async def get_all(db: AsyncSession, user: UserModel) -> Sequence[ArticleModel]:
+    async def get_all(db: AsyncSession) -> Sequence[ArticleModel]:
         result = await db.execute(
-            select(ArticleModel).where(ArticleModel.user_id == user.id)
+            select(ArticleModel)
         )
         return result.scalars().all()

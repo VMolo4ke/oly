@@ -16,7 +16,11 @@ class Settings(BaseSettings):
     LLM_BASE_URL: str = "https://api.proxyapi.ru/v1"
     LLM_API_KEY: str = "sk-tl70jM95Ruverwg7dbbbTti3ihkXrCor"
     LLM_MODEL: str = "qwen/qwen3.7-flash"
+    # Сколько чанков из всех статей подмешивать в контекст
     CHAT_TOP_K: int = 5
+    # Макс. косинусное расстояние (0 — идентично, 2 — противоположно).
+    # None — не отсекать; например 0.6 отфильтрует нерелевантные чанки.
+    CHAT_MAX_DISTANCE: float | None = None
 
     @property
     def DATABASE_URL(self) -> str:

@@ -17,4 +17,3 @@ class ArticleResponse(BaseModel):
     authors: str
     url: Optional[str] = None
     context: str
-    user_id: Optional[int] = None

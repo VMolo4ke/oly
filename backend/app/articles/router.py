@@ -21,7 +21,6 @@ async def create_article(
 
 @router.get("/", response_model=list[ArticleResponse])
 async def read_articles(
-    db: AsyncSession = Depends(get_db),
-    current_user: UserModel = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
 ):
-    return await ArticleService.get_all(db, current_user)
+    return await ArticleService.get_all(db)

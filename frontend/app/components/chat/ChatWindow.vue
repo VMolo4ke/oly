@@ -113,6 +113,8 @@ watch(
     background: rgba($indigo-ink, 0.2);
     border: 1px solid $indigo-ink;
     border-radius: 16px;
+    
+   scrollbar-color: rgba($indigo-ink, 0.4) transparent;
   }
 
   &__empty {

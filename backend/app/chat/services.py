@@ -10,11 +10,10 @@ from app.articles.models import ArticleChunkModel, ArticleModel
 from app.articles.services import embedding_model
 from app.chat.schemas import ChatHistoryItem
 from app.core.config import settings
-from app.users.models import UserModel
 
 SYSTEM_PROMPT = (
     "Ты — помощник по научным статьям. Отвечай на языке вопроса, опираясь на "
-    "приведённый контекст из статей пользователя. Если в контексте нет ответа, "
+    "приведённый контекст из научных статей базы знаний. Если в контексте нет ответа, "
     "честно скажи об этом и ответь исходя из общих знаний, пометив это."
 )
 
@@ -26,19 +25,22 @@ class LLMError(Exception):
 class ChatService:
     @staticmethod
     async def retrieve_context(
-        db: AsyncSession, user: UserModel, query: str
+        db: AsyncSession, query: str
     ) -> list[tuple[ArticleModel, str]]:
-        """Ищет ближайшие чанки среди статей пользователя."""
+        """Ищет по смыслу вопроса ближайшие чанки среди ВСЕХ статей в БД."""
         vector = await asyncio.to_thread(
             lambda: embedding_model.encode([query])[0].tolist()
         )
+        distance = ArticleChunkModel.embedding.cosine_distance(vector)
         stmt = (
             select(ArticleModel, ArticleChunkModel.text_content)
             .join(ArticleChunkModel, ArticleChunkModel.article_id == ArticleModel.id)
-            .where(ArticleModel.user_id == user.id)
-            .order_by(ArticleChunkModel.embedding.cosine_distance(vector))
+            .order_by(distance)
             .limit(settings.CHAT_TOP_K)
         )
+        # Отсекаем нерелевантные чанки, если порог задан
+        if settings.CHAT_MAX_DISTANCE is not None:
+            stmt = stmt.where(distance <= settings.CHAT_MAX_DISTANCE)
         result = await db.execute(stmt)
         return [(article, text) for article, text in result.all()]
 
