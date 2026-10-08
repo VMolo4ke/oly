@@ -9,6 +9,7 @@ from app.articles.models import ArticleModel, ArticleChunkModel  # noqa: F401
 from app.auth.router import router as auth_router
 from app.users.router import router as users_router
 from app.articles.router import router as articles_router
+from app.chat.router import router as chat_router
 
 
 @asynccontextmanager
@@ -38,3 +39,4 @@ app.add_middleware(
 app.include_router(auth_router, prefix="/api/v1")
 app.include_router(users_router, prefix="/api/v1")
 app.include_router(articles_router, prefix="/api/v1")
+app.include_router(chat_router, prefix="/api/v1")

@@ -17,7 +17,7 @@
 
       <ChatMessageItem v-for="m in messages" :key="m.id" :message="m" />
 
-      <div v-if="loading" class="chat__typing">
+      <div v-if="waiting" class="chat__typing">
         <span /><span /><span />
       </div>
     </div>
@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 const { user, logout } = useAuth()
-const { messages, loading, send, clear } = useChat()
+const { messages, loading, waiting, send, clear, disconnect } = useChat()
 
 const draft = ref('')
 const listRef = ref<HTMLElement | null>(null)
@@ -55,14 +55,15 @@ async function onSubmit() {
 }
 
 async function onLogout() {
+  disconnect()
   logout()
   clear()
   await navigateTo('/auth/login')
 }
 
-// Автопрокрутка вниз при новых сообщениях
+// Автопрокрутка вниз при новых сообщениях и по мере стриминга токенов
 watch(
-  [() => messages.value.length, loading],
+  [() => messages.value.length, () => messages.value.at(-1)?.content, waiting],
   async () => {
     await nextTick()
     listRef.value?.scrollTo({ top: listRef.value.scrollHeight, behavior: 'smooth' })

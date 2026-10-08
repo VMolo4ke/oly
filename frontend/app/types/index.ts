@@ -12,18 +12,29 @@ export interface TokenResponse {
 
 export type ChatRole = 'user' | 'assistant'
 
+export interface ChatSource {
+  article_id: number
+  title: string
+}
+
 export interface ChatMessage {
   id: string
   role: ChatRole
   content: string
   error?: boolean
+  sources?: ChatSource[]
 }
 
+// Клиент -> сервер (WebSocket)
 export interface ChatRequest {
   message: string
   history: Array<{ role: ChatRole, content: string }>
 }
 
-export interface ChatResponse {
-  answer: string
-}
+// Сервер -> клиент (WebSocket)
+export type ChatServerEvent
+  = | { type: 'start' }
+    | { type: 'token', content: string }
+    | { type: 'sources', sources: ChatSource[] }
+    | { type: 'done' }
+    | { type: 'error', detail: string }

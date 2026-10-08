@@ -13,6 +13,11 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "dev-secret-change-me-use-32bytes-min"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7
 
+    LLM_BASE_URL: str = "https://api.proxyapi.ru/v1"
+    LLM_API_KEY: str = "sk-tl70jM95Ruverwg7dbbbTti3ihkXrCor"
+    LLM_MODEL: str = "qwen/qwen3.7-flash"
+    CHAT_TOP_K: int = 5
+
     @property
     def DATABASE_URL(self) -> str:
         password = quote_plus(self.POSTGRES_PASSWORD)

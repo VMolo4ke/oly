@@ -1,6 +1,12 @@
 <template>
   <div class="msg" :class="[`msg--${message.role}`, { 'msg--error': message.error }]">
-    <div class="msg__bubble">{{ message.content }}</div>
+    <div class="msg__bubble">
+      {{ message.content }}
+      <div v-if="message.sources?.length" class="msg__sources">
+        Источники:
+        <span v-for="s in message.sources" :key="s.article_id" class="msg__source">{{ s.title }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -32,6 +38,22 @@ defineProps<{
     word-break: break-word;
     white-space: pre-wrap;
     border-radius: 14px;
+  }
+
+  &__sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgba(#fff, 0.6);
+  }
+
+  &__source {
+    padding: 2px 8px;
+    background: rgba($indigo-velvet, 0.5);
+    border-radius: 8px;
   }
 
   &--user &__bubble {
