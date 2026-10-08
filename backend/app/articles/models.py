@@ -11,7 +11,9 @@ class ArticleModel(Base):
     authors = Column(String)
     url = Column(String, nullable=True)
     context = Column(Text)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"), nullable=True, index=True)
 
+    owner = relationship("UserModel", back_populates="articles")
     chunks = relationship("ArticleChunkModel", back_populates="article", cascade="all, delete-orphan")
 
 
