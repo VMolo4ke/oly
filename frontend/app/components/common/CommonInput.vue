@@ -43,25 +43,25 @@ const model = defineModel<string>({ default: '' })
 
   &__label {
     font-size: 14px;
-    color: $mauve-magic;
+    color: $text-muted;
   }
 
   &__field {
     padding: 12px 14px;
-    color: #fff;
-    background: rgba($dark-amethyst, 0.6);
-    border: 1px solid $indigo-velvet;
+    color: $text;
+    background: $surface;
+    border: 1px solid $border;
     border-radius: 10px;
     outline: none;
     transition: border-color 0.15s, box-shadow 0.15s;
 
     &::placeholder {
-      color: rgba($mauve, 0.45);
+      color: rgba($text-muted, 0.65);
     }
 
     &:focus {
-      border-color: $lavender-purple;
-      box-shadow: 0 0 0 3px rgba($lavender-purple, 0.25);
+      border-color: $green-400;
+      box-shadow: 0 0 0 3px rgba($green-400, 0.25);
     }
   }
 }

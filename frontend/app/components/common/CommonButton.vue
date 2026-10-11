@@ -29,27 +29,27 @@ withDefaults(defineProps<{
   justify-content: center;
   gap: 8px;
   padding: 12px 18px;
-  color: #fff;
+  color: $text-on-accent;
   cursor: pointer;
   border: 1px solid transparent;
   border-radius: 10px;
   transition: background 0.15s, opacity 0.15s;
 
   &--primary {
-    background: $royal-violet;
+    background: $green-600;
 
     &:hover:not(:disabled) {
-      background: $lavender-purple;
+      background: $green-700;
     }
   }
 
   &--ghost {
-    color: $mauve;
+    color: $green-700;
     background: transparent;
-    border-color: $indigo-velvet;
+    border-color: $border-strong;
 
     &:hover:not(:disabled) {
-      background: rgba($indigo-velvet, 0.4);
+      background: $green-100;
     }
   }
 
@@ -61,8 +61,8 @@ withDefaults(defineProps<{
   &__spinner {
     width: 14px;
     height: 14px;
-    border: 2px solid rgba(#fff, 0.4);
-    border-top-color: #fff;
+    border: 2px solid currentcolor;
+    border-top-color: transparent;
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
   }

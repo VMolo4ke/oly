@@ -34,7 +34,7 @@ defineProps<{
     max-width: min(720px, 85%);
     padding: 12px 16px;
     line-height: 1.5;
-    color: #fff;
+    color: $text;
     word-break: break-word;
     white-space: pre-wrap;
     border-radius: 14px;
@@ -47,30 +47,33 @@ defineProps<{
     align-items: center;
     margin-top: 10px;
     font-size: 12px;
-    color: rgba(#fff, 0.6);
+    color: $text-muted;
   }
 
   &__source {
     padding: 2px 8px;
-    background: rgba($indigo-velvet, 0.5);
+    color: $green-700;
+    background: $green-100;
     border-radius: 8px;
   }
 
   &--user &__bubble {
-    background: $royal-violet;
+    background: $green-200;
+    border: 1px solid $green-300;
     border-bottom-right-radius: 4px;
   }
 
   &--assistant &__bubble {
-    background: rgba($indigo-ink, 0.6);
-    border: 1px solid $indigo-velvet;
+    background: $surface;
+    border: 1px solid $border;
     border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 4px rgba($green-700, 0.06);
   }
 
   &--error &__bubble {
-    color: #ffb4c0;
-    background: rgba(#ff4d6d, 0.15);
-    border-color: rgba(#ff4d6d, 0.4);
+    color: $error-text;
+    background: $error-bg;
+    border-color: $error-border;
   }
 }
 </style>

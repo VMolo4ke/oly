@@ -1,8 +1,30 @@
-$dark-amethyst: #10002bff;
-$dark-amethyst-2: #240046ff;
-$indigo-ink: #3c096cff;
-$indigo-velvet: #5a189aff;
-$royal-violet: #7b2cbfff;
-$lavender-purple: #9d4eddff;
-$mauve-magic: #c77dffff;
-$mauve: #e0aaffff;
+// Пастельная палитра: молочно-белый + приглушённый шалфейно-зелёный
+
+// Фоны
+$bg: #f7f9f5;
+$bg-2: #eaf1e8;
+$surface: #ffffff;
+$surface-soft: #f1f6ef;
+
+// Границы
+$border: #d8e4d5;
+$border-strong: #bcd0b8;
+
+// Текст
+$text: #2f3f35;
+$text-muted: #6d7f72;
+$text-on-accent: #ffffff;
+
+// Зелёные акценты
+$green-100: #e3eee1;
+$green-200: #cfe2cc;
+$green-300: #b3d1ae;
+$green-400: #93b99a;
+$green-500: #6f9a7b;
+$green-600: #5b8768;
+$green-700: #4a7258;
+
+// Ошибки (приглушённые)
+$error-text: #9a4f4a;
+$error-bg: #f9ece9;
+$error-border: #e6c6c1;

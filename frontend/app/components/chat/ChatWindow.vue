@@ -93,7 +93,7 @@ watch(
   &__user {
     overflow: hidden;
     font-size: 14px;
-    color: $mauve-magic;
+    color: $text-muted;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -110,16 +110,15 @@ watch(
     gap: 12px;
     padding: 16px;
     overflow-y: auto;
-    background: rgba($indigo-ink, 0.2);
-    border: 1px solid $indigo-ink;
+    background: rgba($surface-soft, 0.7);
+    border: 1px solid $border;
     border-radius: 16px;
-    
-   scrollbar-color: rgba($indigo-ink, 0.4) transparent;
+    scrollbar-color: $green-300 transparent;
   }
 
   &__empty {
     margin: auto;
-    color: rgba($mauve, 0.6);
+    color: $text-muted;
   }
 
   &__typing {
@@ -130,7 +129,7 @@ watch(
     span {
       width: 8px;
       height: 8px;
-      background: $mauve-magic;
+      background: $green-400;
       border-radius: 50%;
       animation: blink 1.2s infinite ease-in-out;
 
@@ -154,17 +153,21 @@ watch(
     flex: 1;
     max-height: 160px;
     padding: 12px 14px;
-    color: #fff;
+    color: $text;
     resize: none;
-    background: rgba($dark-amethyst, 0.6);
-    border: 1px solid $indigo-velvet;
+    background: $surface;
+    border: 1px solid $border;
     border-radius: 10px;
     outline: none;
     field-sizing: content;
 
+    &::placeholder {
+      color: rgba($text-muted, 0.65);
+    }
+
     &:focus {
-      border-color: $lavender-purple;
-      box-shadow: 0 0 0 3px rgba($lavender-purple, 0.25);
+      border-color: $green-400;
+      box-shadow: 0 0 0 3px rgba($green-400, 0.25);
     }
   }
 }

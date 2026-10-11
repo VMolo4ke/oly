@@ -12,8 +12,8 @@ body {
 
 body {
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  color: $mauve;
-  background: radial-gradient(circle at 20% 0%, $dark-amethyst-2 0%, $dark-amethyst 60%);
+  color: $text;
+  background: radial-gradient(circle at 20% 0%, $surface 0%, $bg 45%, $bg-2 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }

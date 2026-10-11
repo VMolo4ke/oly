@@ -104,16 +104,17 @@ async function onSubmit() {
     width: 100%;
     max-width: 400px;
     padding: 32px;
-    background: rgba($indigo-ink, 0.35);
-    border: 1px solid $indigo-velvet;
+    background: rgba($surface, 0.85);
+    border: 1px solid $border;
     border-radius: 16px;
+    box-shadow: 0 8px 28px rgba($green-700, 0.08);
     backdrop-filter: blur(6px);
   }
 
   &__title {
     margin: 0 0 8px;
     font-size: 26px;
-    color: #fff;
+    color: $green-700;
     text-align: center;
   }
 
@@ -121,19 +122,20 @@ async function onSubmit() {
     margin: 0;
     padding: 10px 12px;
     font-size: 14px;
-    color: #ffb4c0;
-    background: rgba(#ff4d6d, 0.15);
-    border: 1px solid rgba(#ff4d6d, 0.4);
+    color: $error-text;
+    background: $error-bg;
+    border: 1px solid $error-border;
     border-radius: 8px;
   }
 
   &__switch {
     margin: 0;
     font-size: 14px;
+    color: $text-muted;
     text-align: center;
 
     a {
-      color: $mauve-magic;
+      color: $green-600;
     }
   }
 }
