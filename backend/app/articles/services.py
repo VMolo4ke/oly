@@ -1,6 +1,6 @@
 import asyncio
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, delete as sql_delete
 from typing import Sequence
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer
@@ -27,15 +27,13 @@ class ArticleService:
     async def create(
         db: AsyncSession,
         article_data: ArticleCreate,
-        user: UserModel,
     ) -> ArticleModel:
         db_article = ArticleModel(
             title=article_data.title,
             authors=article_data.authors,
             url=article_data.url,
             context=article_data.context,
-            user_id=user.id,
-        )
+        )   
         db.add(db_article)
         await db.flush()
 
@@ -57,8 +55,27 @@ class ArticleService:
         return db_article
 
     @staticmethod
+    async def delete(id: int, db: AsyncSession):
+        stmt = sql_delete(ArticleModel).where(ArticleModel.id == id)
+        
+        # Выполняем его
+        result = await db.execute(stmt)
+        await db.commit()
+        
+        return result.rowcount > 0
+
+
+    @staticmethod
     async def get_all(db: AsyncSession) -> Sequence[ArticleModel]:
         result = await db.execute(
             select(ArticleModel)
         )
         return result.scalars().all()
+
+    @staticmethod
+    async def get_one(id: int, db: AsyncSession) -> Sequence[ArticleModel]:
+        result = await db.execute(
+            select(ArticleModel)
+            .where(ArticleModel.id == id)
+        )
+        return result.scalar_one_or_none()
