@@ -28,7 +28,7 @@ class ChatService:
     async def retrieve_context(
         db: AsyncSession, query: str
     ) -> list[tuple[ArticleModel, str]]:
-        """Ищет ближайшие чанки среди статей пользователя."""
+        """Ищет ближайшие чанки среди статей."""
         vector = await asyncio.to_thread(
             lambda: embedding_model.encode([query])[0].tolist()
         )

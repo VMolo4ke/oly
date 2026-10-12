@@ -1,11 +1,14 @@
 <template>
   <section class="chat">
     <header class="chat__header">
-      <div class="chat__user">{{ user?.email }}</div>
+      <NuxtLink to="/profile" class="chat__user">
+        <div class="chat__avatar">{{ user?.email[0]?.toUpperCase() }}</div>
+        <p class="chat__email">
+          {{ user?.email }}
+        </p>
+      </NuxtLink>
       <div class="chat__actions">
-        <CommonButton variant="ghost" :disabled="!messages.length || loading" @click="clear">
-          Очистить
-        </CommonButton>
+        <CommonButton variant="ghost" @click="navigateTo('/profile')">Профиль</CommonButton>
         <CommonButton variant="ghost" @click="onLogout">Выйти</CommonButton>
       </div>
     </header>
@@ -91,6 +94,23 @@ watch(
   }
 
   &__user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba($surface-soft, 0.7);
+  }
+
+  &__email {
     overflow: hidden;
     font-size: 14px;
     color: $text-muted;
