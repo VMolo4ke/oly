@@ -13,4 +13,4 @@ class UserModel(Base):
     is_active = Column(Boolean, nullable=False, default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
-    articles = relationship("ArticleModel", back_populates="owner")
+    chats = relationship("ChatModel", back_populates="owner")
